@@ -5,14 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Project;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
+use App\Models\Technology;
 use App\Models\Type;
 
 class ProjectController extends Controller
 {
 
-    public function type(){
-        return $this->belongsTo(Type::class);
-    }
     /**
      * Display a listing of the resource.
      *
@@ -33,8 +31,11 @@ class ProjectController extends Controller
     public function create()
     {
         $types = Type::all();
+        $tech = Technology::all();
 
-        return view('project.create', compact('types'));
+        
+
+        return view('project.create', compact('types', 'tech'));
     }
 
     /**
@@ -73,7 +74,9 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        return view('project.edit', compact('project'));
+        $tech = Technology::all();
+
+        return view('project.edit', compact('project', 'tech'));
     }
 
     /**
@@ -101,6 +104,8 @@ class ProjectController extends Controller
     public function destroy(Project $project)
     {
         $project->delete();
+
+        $project->technology()->sync( [] );
 
         return redirect()->route('project.index');
     }

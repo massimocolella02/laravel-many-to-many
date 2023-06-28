@@ -19,10 +19,12 @@
             <input type="text" class="form-control" id="description" name="description" value="{{$project->description}}">
           </div>
 
-          <div class="mb-3">
-            <label for="technologies" class="form-label">Tecnologies usate</label>
-            <input type="text" class="form-control" id="technologies" name="technologies" value="{{$project->technologies}}">
+          @foreach ($tech as $elem)
+          <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="check-{{$elem['id']}}">
+            <label class="form-check-label" for="check-{{$elem['id']}}">{{$elem['name_tech']}}</label>
           </div>
+          @endforeach
 
           <button type="submit" class="btn btn-primary">Invio</button>
     </form>

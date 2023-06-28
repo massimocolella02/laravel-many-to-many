@@ -19,17 +19,14 @@ class ProjectSeeder extends Seeder
             [
                 'name' => 'Boolflix',
                 'description' => 'Descrizione progetto Boolflix',
-                'technologies' => 'VueJs, Axios'
             ],
             [
                 'name' => 'Whatsapp Web',
                 'description' => 'Descrizione progetto whatsapp web',
-                'technologies' => 'VueJs'
             ],
             [
                 'name' => 'Dc Comics',
                 'description' => 'Descrizione progetto Dc Comics',
-                'technologies' => 'JS Vanilla'
             ],
         ];
 
@@ -37,7 +34,6 @@ class ProjectSeeder extends Seeder
             $newProject = new Project();
             $newProject->name = $elem['name'];
             $newProject->description = $elem['description'];
-            $newProject->technologies = $elem['technologies'];
             $newProject->save();
         }
     }

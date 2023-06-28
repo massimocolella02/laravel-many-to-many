@@ -18,11 +18,6 @@
           </div>
 
           <div class="mb-3">
-            <label for="technologies" class="form-label">Tecnologies usate</label>
-            <input type="text" class="form-control" id="technologies" name="technologies">
-          </div>
-
-          <div class="mb-3">
             <label for="Select" class="form-label">Scegli una categoria</label>
             <select id="Select" class="form-select" name="type_id">
               <option>----Scegli un'opzione----</option>
@@ -31,6 +26,14 @@
               @endforeach
             </select>
           </div>
+
+          @foreach ($tech as $elem)
+          <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="check-{{$elem['id']}}">
+            <label class="form-check-label" for="check-{{$elem['id']}}">{{$elem['name_tech']}}</label>
+          </div>
+          @endforeach
+
 
           <button type="submit" class="btn btn-primary">Invio</button>
     </form>
