@@ -68,7 +68,7 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        //
+        return view('project.edit', compact('project'));
     }
 
     /**
@@ -80,7 +80,11 @@ class ProjectController extends Controller
      */
     public function update(UpdateProjectRequest $request, Project $project)
     {
-        //
+        $data = $request->all();
+
+        $project->update($data);
+
+        return redirect()->route('project.index');
     }
 
     /**
@@ -91,6 +95,8 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        //
+        $project->delete();
+
+        return redirect()->route('project.index');
     }
 }
