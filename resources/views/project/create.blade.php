@@ -22,6 +22,16 @@
             <input type="text" class="form-control" id="technologies" name="technologies">
           </div>
 
+          <div class="mb-3">
+            <label for="Select" class="form-label">Scegli una categoria</label>
+            <select id="Select" class="form-select" name="type_id">
+              <option>----Scegli un'opzione----</option>
+              @foreach ($types as $elem)
+              <option value="{{$elem['id']}}">{{$elem['tipologia']}}</option>
+              @endforeach
+            </select>
+          </div>
+
           <button type="submit" class="btn btn-primary">Invio</button>
     </form>
 </div>

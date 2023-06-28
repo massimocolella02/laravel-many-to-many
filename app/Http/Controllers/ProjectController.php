@@ -5,9 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Project;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
+use App\Models\Type;
 
 class ProjectController extends Controller
 {
+
+    public function type(){
+        return $this->belongsTo(Type::class);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -27,7 +32,9 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('project.create');
+        $types = Type::all();
+
+        return view('project.create', compact('types'));
     }
 
     /**
@@ -41,9 +48,7 @@ class ProjectController extends Controller
         $data = $request->all();
 
         $newProject = new Project();
-        $newProject->name = $data['name'];
-        $newProject->description = $data['description'];
-        $newProject->technologies = $data['technologies'];
+        $newProject->fill($data);
         $newProject->save();
 
         return redirect()->route('project.index');
